@@ -1,14 +1,12 @@
 // Import the required modules
 const express = require('express');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
 
 // Initialize the Express app
 const app = express();
 const PORT = 3000;
 
 // Middleware setup
-app.use(morgan('dev')); // Logs requests to the console
 app.use(bodyParser.json()); // Parses JSON request bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Parses URL-encoded request bodies
 
