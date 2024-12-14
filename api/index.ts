@@ -11,11 +11,14 @@ app.get("/test", (req, res) => {
     res.sendFile(path.join(__dirname, '../public/test.html'))
 });
 
-app.get("/users", (req, res) => {
-    turso.execute('SELECT * FROM users')
+app.get("/users", async (req, res) => {
+    res.send(await get_all_users());
 })
 
+async function get_all_users() {
+    return await turso.execute("SELECT * FROM users");
+}
 
-app.listen(8080, () => console.log("Server ready on port 3000."));
+app.listen(process.env.URL || 3000, () => console.log("Server ready on port 3000."));
 
 module.exports = app;
